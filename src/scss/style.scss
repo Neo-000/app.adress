@@ -82,12 +82,12 @@ body{
 
   .text-field__input {
     display: block;
-    font-size: 20px;
+    font-size: 30px;
     width: 100%;
-    height: calc(2.25rem + 2px);
+    height: 80px;
     padding: 0.375rem 0.75rem;
     font-family: inherit;
-    font-size: 1rem;
+    // font-size: 1rem;
     font-weight: 400;
     line-height: 1.5;
     color: #212529;
@@ -137,14 +137,16 @@ body{
   }
 
   .text-field_floating .text-field__input {
-    height: calc(3.5rem + 2px);
+    // height: calc(3.5rem + 2px);
     line-height: 1.25;
     padding: 1rem 0.75rem;
   }
 
   .text-field_floating .text-field__label {
-    color :rgb(17, 21, 87);
+    color :rgb(7, 13, 125);
     position: absolute;
+    display: flex;
+    align-items: center;
     top: 0;
     left: 0;
     height: 100%;
@@ -172,5 +174,26 @@ body{
   .text-field_floating .text-field__input:focus~.text-field__label,
   .text-field_floating .text-field__input:not(:placeholder-shown)~.text-field__label {
     opacity: .65;
-    transform: scale(.85) translateY(-.75rem) translateX(.15rem);
+    transform: scale(.85) translateY(-.85rem) translateX(.15rem);
+  }
+  .err{
+    background: rgba(255, 255, 255, 0);
+    font-size: 15px;
+    text-align: center;
+    width: 100%;
+    padding: 10px;
+    color: rgb(147, 22, 22);
+    border: none;
+    box-shadow: none;
+    outline: none;
+    &:disabled,
+    &:focus,
+    &[readonly] {
+    border: none;
+    box-shadow: none;
+    outline: none;
+    // background-color: #f5f5f50e;
+    backdrop-filter: blur(4px);
+    opacity: 1;
+}
   }

@@ -1,5 +1,6 @@
 const input = document.getElementById('input');
 const switches = [];
+const err = document.getElementById('err');
 const value = {
     number:'12',
     active:{
@@ -14,7 +15,7 @@ const value = {
     },
     enums:[]
 
-}
+};
 const chekpoint ={
     item_1:1,
     item_2:2,
@@ -29,13 +30,22 @@ const chekpoint ={
 function logik(){
     console.log('!')
     let summ = Number(value.number);
-    for(let i = 1; i < switches.length;i++){
-        for(let items in chekpoint){
-            if(switches[i] >= summ){
-                summ = Number(summ) - Number(chekpoint[items]);
-                switches[i]
-            }
+    console.log(summ)
+    for(let i = 8; i >= 1;i = i - 1){
+        console.log(switches[i])
+        let id = 'item_' + i;
+        console.log(chekpoint[id])
+        if(summ >= chekpoint[id]){
+            summ = Number(summ) - Number( chekpoint[id]);
+            value.active[id] = true
+            switches[i].checked = true
         }
+        else {
+            summ = Number(summ);
+            value.active[id] = false
+            switches[i].checked = false
+        }
+        console.log('summ ' + summ)
     }
 }
 
@@ -85,6 +95,13 @@ function PushNumber(){
     input.value = value.number
 }
 
+function PushErr(text){
+    if(text == '' || text == null || text == undefined){
+        err.value = '';
+    } else {
+        err.value = text;
+    }
+}
 
 
 function init(){
@@ -93,12 +110,18 @@ function init(){
     input.oninput = () => {
         // console.log('input invaled')
         value.number = Number(input.value);
-        if(Number(value.number) > 225){
-            input.value = 225
+        if(Number(value.number) > 255){
+            PushErr('число не может быть больше 255')
+            input.value = 255
             value.number = Number(input.value)
+        } else{
+            PushErr(null)
         }
         if(Number(input.value) < 0){
+            PushErr('число не может быть меньше 0')
             input.value = 0
+        } else {
+            PushErr(null)
         }
         logik()
         // console.log(value.number)
